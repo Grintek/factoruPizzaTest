@@ -1,14 +1,21 @@
 package com.factory.pizza.nyPizzaStore.pizza;
 
 import com.factory.pizza.Pizza;
+import com.factory.pizza.PizzaIngredientFactory;
 
 public class NyStyleVeggiePizza extends Pizza {
 
-    public NyStyleVeggiePizza() {
-        setName("Ny Style Sauce and Cheese Pizza");
-        setDough("Thin Crust Dough");
-        setSauce("Marinara Sauce");
+    PizzaIngredientFactory ingredientFactory;
 
-        getToppings().add("Grated Reggiano Cheese");
+    public NyStyleVeggiePizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
+    }
+
+    @Override
+    public void prepare() {
+        System.out.println("Pepperoni " + getName());
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
     }
 }
